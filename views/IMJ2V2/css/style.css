@@ -994,11 +994,12 @@ figure.effect-lily:hover p {
   background: #333;
 }
 .m-top-weixin div {
-  background: url('../images/weixin.png?1440917261');
+  background: url('../img1/img10.jpg?1440917261') no-repeat;
+  background-size: 194px 199px;
   width: 194px;
   height: 199px;
   position: absolute;
-  left: -194px;
+  left: -200px;
   top: -115px;
   opacity: 0;
   transform: scale(0);
