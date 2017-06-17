@@ -294,12 +294,11 @@ S.UI = (function () {
 
   function getResult(luckys) {
     layer.open({
-        type: 1,
-        title: false,
-        closeBtn: 0,
-        shadeClose: true,
-        skin: 'yourclass',
-        content: '自定义HTML内容'
+        type: 2,
+        skin: 'layui-layer-rim', //加上边框
+        area: ['680px', '540px'], //宽高
+        title: ['幸运观众名单', "font-size: 25px; color: #c74e37; text-align: center; padding: 20px 5px 20px 5px;"],
+        content: ['luckyResult.html', 'no']
     });
     // $.ajax({
     //     type: 'GET',
