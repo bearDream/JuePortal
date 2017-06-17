@@ -298,7 +298,7 @@ S.UI = (function () {
         skin: 'layui-layer-rim', //加上边框
         area: ['680px', '540px'], //宽高
         title: ['幸运观众名单', "font-size: 25px; color: #c74e37; text-align: center; padding: 20px 5px 20px 5px;"],
-        content: ['luckyResult.html', 'no']
+        content: ['luckyResult.html' + '?' + luckys, 'no']
     });
     // $.ajax({
     //     type: 'GET',

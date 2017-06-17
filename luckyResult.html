@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="js/jquery-1.7.2.min.js"/>
     <script src="layui-v1.0.9_rls/layui/layui.js"></script>
     <link rel="stylesheet" href="layui-v1.0.9_rls/layui/css/layui.css">
 </head>
 <body>
     <!--<p style="font-size: 25px; color: #c74e37; text-align: center;">幸运观众</p>-->
-    <div id="app" class="luckyTable">
-        <table class="layui-table">
+    <div class="luckyTable">
+        <table id="app" class="layui-table">
             <colgroup>
                 <col width="150">
                 <col width="200">
@@ -24,14 +25,25 @@
             </thead>
             <tbody>
             <tr>
-                <td id="oneNumber"></td>
-                <td id="oneHeadImgUrl">2016-11-29</td>
-                <td id="oneUsername">人生就像是一场修行</td>
+                <td>{{res[0].number}}</td>
+                <td>
+                    <img :src="res[0].headImgUrl" style="border-radius: 50%;width: 70px;">
+                </td>
+                <td>{{res[0].username}}</td>
             </tr>
             <tr>
-                <td>贤心</td>
-                <td>2016-11-29</td>
-                <td>人生就像是一场修行</td>
+                <td>{{res[1].number}}</td>
+                <td>
+                    <img  :src="res[1].headImgUrl" style="border-radius: 50%;width: 70px;">
+                </td>
+                <td>{{res[1].username}}</td>
+            </tr>
+            <tr>
+                <td>{{res[2].number}}</td>
+                <td>
+                    <img  :src="res[2].headImgUrl" style="border-radius: 50%;width: 70px;">
+                </td>
+                <td>{{res[2].username}}</td>
             </tr>
             </tbody>
         </table>
@@ -42,6 +54,37 @@
         padding: 10px 20px 10px 20px;
     }
 </style>
+<script src="./js/vue.js"></script>
+<script>
+    var data =  {
+        res: []}
+    new Vue({
+        el: '#app',
+        data: data
+    })
+
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var luckys = window.location.search.substr(1)
+     $.ajax({
+         type: 'GET',
+         dataType: 'json',
+         url: 'https://wx.chiprincess.cn/api/mobile/special',
+//       url: 'http://localhost:8888/api/mobile/special',
+         data: {
+           luckys: luckys
+         },
+         success: function (res) {
+             console.info(res)
+             if (res.code !== -1) {
+                 data.res = res.data
+             }
+             console.info(data.res)
+         },
+         error: function (res) {
+             console.info(res)
+         }
+     })
+</script>
 <script type="application/javascript">
     layui.use('layer', function(){
         var layer = layui.layer;
