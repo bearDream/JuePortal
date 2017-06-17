@@ -24,7 +24,7 @@ var S = {
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
-      S.UI.simulate('now|我们|搞事情|');
+      S.UI.simulate('now|我们|搞事情||');
     }
     S.Drawing.loop(function () {
       S.Shape.render();
@@ -153,7 +153,7 @@ S.UI = (function () {
       value = getValue(current);
 
       switch (action) {
-        case 'countdown':
+        case 'cd':
           value = parseInt(value) || 10;
           value = value > 0 ? value : 10;
           timedAction(function (index) {
@@ -200,7 +200,8 @@ S.UI = (function () {
           break;
 
         default:
-          S.Shape.switchShape(S.ShapeBuilder.letter(current[0] === cmd ? '抽奖中。。。' : current));
+          S.Shape.switchShape(S.ShapeBuilder.letter(current[0] === cmd ?
+            '抽奖中。。。' : current));
       }
     }, 2000, sequence.length);
   }
@@ -709,3 +710,4 @@ S.Shape = (function () {
 
 
 S.init();
+
