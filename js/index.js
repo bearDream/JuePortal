@@ -15,6 +15,9 @@
 
 var S = {
   init: function () {
+      layui.use('layer', function(){
+          var layer = layui.layer;
+      });
     var action = window.location.href,
         i = action.indexOf('?a=');
 
@@ -226,6 +229,14 @@ S.UI = (function () {
 
       if (e.keyCode === 13) {
         firstAction = false;
+        // 检测是否有两个逗号，（根据“，”分割字符串得到字符串数组，如果数组长度为3则说明可以）
+        var temp = input.value;
+        var str = temp.split(",");
+        console.info(str)
+        if (str.length == 3) {
+          // 可以发送请求将数据传送给后台来进行抽奖
+          getResult(str);
+        }
         reset();
         performAction(input.value);
       }
@@ -279,6 +290,37 @@ S.UI = (function () {
     canvas.addEventListener('click', function (e) {
       overlay.classList.remove('overlay--visible');
     });
+  }
+
+  function getResult(luckys) {
+    layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        shadeClose: true,
+        skin: 'yourclass',
+        content: '自定义HTML内容'
+    });
+    // $.ajax({
+    //     type: 'GET',
+    //     dataType: 'json',
+    //     // url: 'https://wx.chiprincess.cn/api/mobile/special',
+    //     url: 'http://localhost:8888/api/mobile/special',
+    //     data: {
+    //       luckys: '1,2,3'
+    //     },
+    //     success: function (res) {
+    //         console.info(res)
+    //         // 成功后 回掉 对话框（其中包含了中奖人员信息）
+    //         layer.open({
+    //             type: 3,
+    //             content: '传入任意的文本或html' //这里content是一个普通的String
+    //         });
+    //     },
+    //     error: function (res) {
+    //         console.info(res)
+    //     }
+    // })
   }
 
   function init() {
